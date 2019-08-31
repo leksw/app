@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  redis:
+    container_name: app_redis
+    image: redis:latest
+    restart: unless-stopped
+    expose:
+      - '6379'
+
+  db:
+    container_name: app_postgres
+    image: postgres
+    env_file: backend/env
+    volumes:
+      - db-app:/var/lib/postgresql/data
+    expose:
+      - '5432'
+
+  web:
+    container_name: app_web
+    build:
+      context: backend
+      dockerfile: ./compose/django/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/code
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+      - redis
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - '8025:8025'
+
+volumes:
+  db-app:
