@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'users.apps.UsersConfig',
+    'ufop.apps.UfopConfig',
 ]
 
 MIDDLEWARE = [
@@ -174,6 +175,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+TMP_DATA_DIR = str(BASE_DIR / 'tmp_data')
 
 
 # django-debug-toolbar

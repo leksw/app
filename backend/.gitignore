@@ -135,3 +135,4 @@ dmypy.json
 # Django stuff:
 
 env
+tmp_data/
