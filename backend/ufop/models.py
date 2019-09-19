@@ -50,10 +50,10 @@ class UoRecord(models.Model):
     short_name = models.CharField(max_length=755)
     edrpou = models.CharField(max_length=55)
     address = models.CharField(max_length=755)
-    boss = models.CharField(max_length=255)
-    kved = models.CharField(max_length=455)
-    stan = models.CharField(max_length=455)
-    founding_document_num = models.CharField(max_length=255)
+    boss = models.CharField(max_length=755)
+    kved = models.CharField(max_length=755)
+    stan = models.CharField(max_length=755)
+    founding_document_num = models.CharField(max_length=755)
     records = models.ForeignKey(
         Uo,
         on_delete=models.CASCADE,
@@ -69,7 +69,7 @@ class UoRecord(models.Model):
 
 
 class Founder(models.Model):
-    fio = models.CharField(max_length=255)
+    fio = models.CharField(max_length=755)
     share = models.TextField()
     founders = models.ForeignKey(
         UoRecord,

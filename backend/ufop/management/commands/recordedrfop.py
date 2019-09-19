@@ -40,6 +40,7 @@ class Command(BaseCommand):
                 elem.clear()
 
         for tmp_file in tmp_dir.iterdir():
-            tmp_file.unlink()
+            if '_FOP_' in tmp_file.name:
+                tmp_file.unlink()
             
         self.stdout.write(self.style.SUCCESS('Successfully recorded "%s"' % fop.records.count()))

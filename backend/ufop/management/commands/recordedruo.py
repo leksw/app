@@ -60,7 +60,8 @@ class Command(BaseCommand):
 
                 elem.clear()
 
-        # for tmp_file in tmp_dir.iterdir():
-        #     tmp_file.unlink()
+        for tmp_file in tmp_dir.iterdir():
+            if '_UO_' in tmp_file.name:
+                tmp_file.unlink()
             
         self.stdout.write(self.style.SUCCESS('Successfully recorded "%s"' % Uo.objects.count()))

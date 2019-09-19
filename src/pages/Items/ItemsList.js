@@ -15,7 +15,7 @@ export default function ItemsList(props) {
   return (
     <ul style={styles.ul}>
       {props.items.map((item, idx) => {
-        return <Item item={item} key={item.id} index={idx} />;
+        return <Item item={item} key={item.id + item.title} index={idx} />;
       })}
     </ul>
   );

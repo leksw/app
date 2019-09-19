@@ -72,7 +72,10 @@ class Command(BaseCommand):
         ukr_date_list[0] = MONTH_DICT.get(ukr_date_list[0])
         ukr_date_list[-1] = 'UTC+3'
         update_date = parser.parse(' '.join(ukr_date_list))
-        Uo.objects.get_or_create(update_date=update_date)
-        Fop.objects.get_or_create(update_date=update_date)
+
+        uo, _ = Uo.objects.get_or_create(update_date=update_date)
+        Uo.objects.exclude(id=uo.id).delete()
+        fop, _ = Fop.objects.get_or_create(update_date=update_date)
+        Fop.objects.exclude(id=fop.id).delete()
             
-        self.stdout.write(self.style.SUCCESS('Data is uploaded - ' % ukr_date_update))
+        self.stdout.write(self.style.SUCCESS('Data is uploaded - %s' % ukr_date_update))

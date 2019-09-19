@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'django_filters',
 
     'users.apps.UsersConfig',
     'ufop.apps.UfopConfig',
@@ -173,11 +174,12 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100,
 }
 
 TMP_DATA_DIR = str(BASE_DIR / 'tmp_data')
-
 
 # django-debug-toolbar
 INSTALLED_APPS += ["debug_toolbar", "django_extensions", "corsheaders"]  # noqa F405
