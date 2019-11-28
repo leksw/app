@@ -26,7 +26,7 @@ class Command(BaseCommand):
     help = 'Upload EDR FOP and UO data'
 
     def handle(self, *args, **options):
-        data_url = 'https://data.gov.ua/dataset/1c7f3815-3259-45e0-bdf1-64dca07ddc10/resource/b0476139-62f2-4ede-9d3b-884ad99afd08'
+        data_url = 'https://data.gov.ua/dataset/b244f35a-e50a-4a80-b704-032c42ba8142/resource/06bbccbd-e19c-40d5-9e18-447b110c0b4c'
         
         try:
             page = requests.get(data_url)

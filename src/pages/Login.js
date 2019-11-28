@@ -6,7 +6,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
 
-    userService.logout();
+    // userService.logout();
 
     this.state = {
       username: '',

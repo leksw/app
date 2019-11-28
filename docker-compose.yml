@@ -22,7 +22,7 @@ services:
     build:
       context: backend
       dockerfile: ./compose/django/Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver_plus 0.0.0.0:8000
     volumes:
       - ./backend:/code
     ports:

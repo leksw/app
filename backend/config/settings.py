@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'django_filters',
+    'djoser',
 
     'users.apps.UsersConfig',
     'ufop.apps.UfopConfig',
@@ -177,6 +178,15 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
 }
 
 TMP_DATA_DIR = str(BASE_DIR / 'tmp_data')
@@ -197,3 +207,32 @@ if os.environ["USE_DOCKER"] == "yes":
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'default': {
+            'format': '[DJANGO] %(levelname)s %(asctime)s %(module)s '
+                      '%(name)s.%(funcName)s:%(lineno)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'default',
+        }
+    },
+    'loggers': {
+        '*': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        }
+    },
+}
